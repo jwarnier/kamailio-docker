@@ -1,5 +1,5 @@
 #!/bin/bash
-dist=${1:-bookworm}
+dist=${1:-trixie}
 version=${2:-6.0.0}
 DATE=$(date +"%Y-%m-%d")
 
