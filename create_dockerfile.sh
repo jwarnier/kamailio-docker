@@ -59,7 +59,7 @@ fi
 
   cat >>"${DOCKERFILE}" <<EOF
 RUN rm -rf /var/lib/apt/lists/* && apt-get update && \
-  DEBIAN_FRONTEND=noninteractive apt-get install -qq --assume-yes gnupg wget apt-transport-https
+  DEBIAN_FRONTEND=noninteractive apt-get install -qq --assume-yes gnupg wget
 # kamailio repo
 RUN echo "deb ${KAM_REPO} ${dist} main" > \
   /etc/apt/sources.list.d/kamailio.list
