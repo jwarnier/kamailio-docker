@@ -1,4 +1,4 @@
-DISTS ?= bookworm bullseye buster stretch noble jammy focal bionic
+DISTS ?= trixie bookworm bullseye noble jammy
 
 VERSION ?= 6.0.0
 

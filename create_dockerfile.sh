@@ -89,8 +89,8 @@ EOF
 }
 
 case ${dist} in
-  resolute|noble|jammy|focal|bionic|xenial|trusty|precise) base=ubuntu ;;
-  squeeze|wheezy|jessie|stretch|buster|bullseye|bookworm|trixie) base=debian ;;
+  resolute|noble|jammy) base=ubuntu ;;
+  bullseye|bookworm|trixie) base=debian ;;
   *)
     echo "ERROR: no ${dist} base supported"
     exit 1
@@ -98,23 +98,17 @@ case ${dist} in
 esac
 
 case ${dist} in
-  squeeze|wheezy|jessie|stretch) docker_tag=${base}/eol:${dist};;
+  bullseye) docker_tag=${base}/eol:${dist};;
   *) docker_tag=${base}:${dist}
 esac
 
 case ${dist} in
-  focal|bionic|xenial|trusty|precise) apt_key=true ;;
-  squeeze|wheezy|jessie|stretch|buster) apt_key=true ;;
   *) apt_key=false ;;
 esac
 
 archived=false
 case ${dist} in
-  precise)
-    archived=true
-    RULE="RUN sed -i -e 's/archive.ubuntu.com/old-releases.ubuntu.com/g' /etc/apt/sources.list"
-    ;;
-  squeeze|wheezy|jessie|stretch)
+  bullseye)
     archived=true
     RULE="RUN sed -i -e 's/deb.debian.org/archive.debian.org/g' -e '/security.debian.org/d' -e '/${dist}-updates/d' /etc/apt/sources.list"
     ;;
